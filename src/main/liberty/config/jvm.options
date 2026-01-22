@@ -1,0 +1,6 @@
+# JVM Options for Kafka SASL Demo
+#-Djava.security.auth.login.config=${server.config.dir}/kafka_client_jaas.conf
+#-Dsasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="admin" password="admin-security";
+-Xmx512m
+-Xms256m
+-Dfile.encoding=UTF-8

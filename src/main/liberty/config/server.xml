@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="Kafka SASL Demo Server">
+
+    <!-- Enable the following features -->
+    <featureManager>
+        <feature>restfulWS-3.1</feature>
+        <feature>jsonb-3.0</feature>
+        <feature>cdi-4.0</feature>
+        <feature>pages-3.1</feature>
+        <feature>mpConfig-3.1</feature>
+    </featureManager>
+
+    <!-- Define the host name and ports -->
+    <httpEndpoint id="defaultHttpEndpoint" 
+                  httpPort="9080" 
+                  httpsPort="9443" 
+                  host="*" />
+
+    <!-- Automatically expand WAR files and EAR files -->
+    <applicationManager autoExpand="true"/>
+
+    <!-- Library reference for Kafka and dependencies -->
+    <library id="kafkaLib">
+        <fileset dir="${server.config.dir}/lib" includes="*.jar"/>
+    </library>
+
+    <!-- Application configuration -->
+    <webApplication id="kafka-sasl-demo" 
+                    location="kafka-sasl-demo.war" 
+                    contextRoot="/kafka-sasl">
+      <!--  <classloader commonLibraryRef="kafkaLib"/> -->
+    </webApplication>
+
+    <!-- MicroProfile Config will be handled via microprofile-config.properties -->
+
+    <!-- Logging configuration -->
+    <logging traceSpecification="*=info:com.example.kafka.*=all:org.apache.kafka.*=info"/>
+
+    <!-- CORS configuration for REST endpoints -->
+    <cors domain="/kafka-sasl"
+          allowedOrigins="*"
+          allowedMethods="GET, DELETE, POST, PUT"
+          allowedHeaders="*"
+          allowCredentials="true"
+          maxAge="3600" />
+</server>
