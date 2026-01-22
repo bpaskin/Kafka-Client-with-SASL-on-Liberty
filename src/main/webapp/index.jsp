@@ -431,7 +431,7 @@
         }
 
         function getProducerMetrics() {
-            fetch('api/kafka/send/metrics')
+            fetch('api/kafka/producer/metrics')
             .then(response => response.json())
             .then(data => {
                 showResponse('Producer metrics retrieved (check console for details)', 'info');
